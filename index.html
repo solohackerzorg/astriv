@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASTRIV Ecosystem | Open-Source Autonomous Core & Services</title>
-  <meta name="description" content="Next-generation decentralized institutional infrastructure, AI career engines, and campus administrative automation." />
-  
-  <!-- Auto redirect fallback to primary domain (adjustable countdown below) -->
-  <meta http-equiv="refresh" content="8; url=https://astriv.co" />
+  <title>ASTRIV Ecosystem | Architecture, AI Pipelines & Autonomous Systems</title>
+  <meta name="description" content="Technical documentation and live hub for ASTRIV (astriv.co), Gradentia AI, School ERP runtime, and digital intelligence infrastructure." />
 
+  <!-- Preconnect Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS & Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
@@ -26,12 +26,14 @@
           colors: {
             brand: {
               void: '#030712',
-              surface: '#0b1329',
+              surface: '#0a0f1d',
+              card: '#0f172a',
               border: '#1e293b',
               glow: '#0284c7',
               cyan: '#38bdf8',
-              gold: '#fbbf24',
-              emerald: '#10b981'
+              emerald: '#10b981',
+              gold: '#f59e0b',
+              purple: '#818cf8'
             }
           }
         }
@@ -39,199 +41,365 @@
     }
   </script>
 </head>
-<body class="bg-brand-void text-slate-200 antialiased selection:bg-brand-cyan selection:text-brand-void min-h-screen relative overflow-x-hidden">
+<body class="bg-brand-void text-slate-200 antialiased selection:bg-brand-cyan selection:text-brand-void min-h-screen relative overflow-x-hidden font-sans">
 
-  <!-- Ambient Radiant Mesh -->
-  <div class="fixed inset-0 pointer-events-none -z-10">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-tr from-brand-glow/20 via-brand-cyan/10 to-indigo-600/15 blur-[140px] rounded-full"></div>
-    <div class="absolute bottom-0 right-0 w-[500px] h-[300px] bg-sky-500/10 blur-[120px] rounded-full"></div>
+  <!-- Ambient Radiant Glow Elements -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-tr from-brand-glow/20 via-brand-cyan/15 to-purple-600/10 blur-[150px] rounded-full"></div>
+    <div class="absolute top-1/2 right-0 w-[600px] h-[400px] bg-emerald-500/10 blur-[140px] rounded-full"></div>
+    <div class="absolute bottom-10 left-10 w-[500px] h-[300px] bg-brand-cyan/10 blur-[120px] rounded-full"></div>
   </div>
 
-  <!-- Header / Navigation Bar -->
-  <header class="border-b border-slate-800/80 bg-brand-void/80 backdrop-blur-md sticky top-0 z-50">
+  <!-- Realtime Auto-Routing Bar -->
+  <div id="routing-hud" class="bg-slate-900/90 border-b border-slate-800 backdrop-blur-md sticky top-0 z-50 px-4 py-2 text-xs">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span id="pulse-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-slate-400 font-code">Gateway Target:</span>
+        <span class="font-code text-brand-cyan font-semibold">https://astriv.co</span>
+        <span class="text-slate-500 hidden md:inline">|</span>
+        <span class="text-slate-300 font-code hidden md:inline">Redirecting in <span id="timer" class="text-white font-bold text-sm">12</span>s</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="pause-btn" onclick="togglePause()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-code text-[11px] border border-slate-700 transition">
+          Pause Countdown
+        </button>
+        <a href="https://astriv.co" class="px-3 py-1 rounded bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold text-[11px] shadow transition">
+          Launch astriv.co Now →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Site Header -->
+  <header class="border-b border-slate-800/80 bg-brand-void/80 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <a href="https://astriv.co" class="font-mono text-xl font-black tracking-widest bg-gradient-to-r from-white via-slate-200 to-brand-cyan bg-clip-text text-transparent">
+        <a href="https://astriv.co" class="font-mono text-2xl font-black tracking-widest bg-gradient-to-r from-white via-slate-200 to-brand-cyan bg-clip-text text-transparent">
           ASTRIV
         </a>
-        <span class="text-[10px] tracking-wider uppercase font-semibold px-2 py-0.5 rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-300">
-          v1.2-beta
+        <span class="text-[10px] tracking-wider uppercase font-code font-semibold px-2.5 py-0.5 rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-300">
+          STAGING PLATFORM v1.4
         </span>
       </div>
-
-      <div class="flex items-center gap-3 sm:gap-4">
-        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg border border-slate-700/80 hover:border-slate-600 bg-slate-900/60">
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-white transition px-3.5 py-1.5 rounded-lg border border-slate-700/80 hover:border-slate-600 bg-slate-900/60 font-code">
           <i data-lucide="github" class="w-4 h-4"></i>
-          <span class="hidden sm:inline">Source Core</span>
-        </a>
-        <a href="https://astriv.co" class="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white transition shadow-lg shadow-sky-500/20">
-          Launch App →
+          <span>solohackerzorg/astriv</span>
         </a>
       </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-6 py-12 sm:py-16 space-y-16">
-    
-    <!-- Hero & Gateway Banner -->
-    <section class="max-w-3xl mx-auto text-center space-y-6">
-      
-      <!-- Redirect Status HUD -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full border border-slate-700/80 bg-slate-900/90 text-xs text-slate-300 shadow-inner">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span class="text-slate-400">Gateway Active:</span>
-        <span class="font-code text-brand-cyan font-medium">Auto-routing to astriv.co in <span id="timer" class="text-white font-bold">8</span>s</span>
-        <button id="pause-btn" onclick="togglePause()" class="ml-2 underline text-[11px] text-slate-400 hover:text-white cursor-pointer transition">
-          Pause Redirect
-        </button>
-      </div>
+  <main class="max-w-6xl mx-auto px-6 py-12 space-y-20">
 
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight font-sans">
-        Modular AI Infrastructure for <br class="hidden sm:block"/>
-        <span class="bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-          Next-Gen Institutional Workflows
+    <!-- Hero Section -->
+    <section class="max-w-3xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-slate-800 bg-slate-900/80 text-xs text-slate-400 font-code">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        Autonomous Academic & Operational Runtime Core
+      </div>
+      
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+        Infrastructure for <br/>
+        <span class="bg-gradient-to-r from-sky-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+          Cognitive Academic & Campus Workflows
         </span>
       </h1>
 
       <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto font-light">
-        ASTRIV develops open-core, offline-first institutional management stacks, automated financial ledger verification, and intelligent agentic guidance systems.
+        A unified digital ecosystem bridging AI-driven career counseling, resilient local-first campus operations, double-entry financial ledgers, and intelligent automation.
       </p>
 
-      <!-- Primary Action Buttons -->
+      <!-- Fast Jump Action Buttons -->
       <div class="flex flex-wrap justify-center gap-3 pt-2">
-        <a href="https://astriv.co" class="flex items-center gap-2 bg-white text-slate-950 font-semibold text-xs sm:text-sm px-6 py-3 rounded-lg hover:bg-slate-100 transition shadow-lg">
-          <i data-lucide="globe" class="w-4 h-4"></i>
-          Open astriv.co Hub
+        <a href="#projects" class="flex items-center gap-2 bg-white text-slate-950 font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-lg hover:bg-slate-100 transition shadow-lg">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+          Explore Project Ecosystem
         </a>
-        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm px-6 py-3 rounded-lg transition">
-          <i data-lucide="git-pull-request" class="w-4 h-4"></i>
-          Explore GitHub Repo
+        <a href="#quickstart" class="flex items-center gap-2 border border-slate-700 bg-slate-900/80 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm px-5 py-2.5 rounded-lg transition font-code">
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          CLI & Repository
         </a>
       </div>
     </section>
 
-    <!-- Production Subdomains / Ecosystem Grid -->
-    <section class="space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-slate-800 pb-4">
+    <!-- Node Navigation Matrix -->
+    <section class="bg-gradient-to-b from-slate-900/60 to-slate-950/80 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800/80 pb-4">
         <div>
-          <h2 class="text-xl font-bold text-white tracking-tight">Active Ecosystem Nodes</h2>
-          <p class="text-xs text-slate-400 mt-1">Live cloud services connected to the open-source architecture.</p>
+          <h2 class="text-lg font-bold text-white tracking-tight">Active Production Endpoints</h2>
+          <p class="text-xs text-slate-400">Direct endpoints deployed across the ASTRIV network.</p>
         </div>
-        <span class="text-[11px] font-code text-brand-cyan tracking-wider">NETWORK: 3 NODES OPERATIONAL</span>
+        <span class="text-xs font-code text-brand-emerald flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> ALL HOSTS OPERATIONAL
+        </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Card 1: astriv.co -->
-        <div class="group relative rounded-xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm hover:border-sky-500/50 hover:bg-slate-900/70 transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="w-9 h-9 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                <i data-lucide="layers" class="w-4 h-4"></i>
-              </span>
-              <span class="text-[10px] font-code uppercase px-2 py-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">Main Gateway</span>
-            </div>
-            <h3 class="text-lg font-bold text-white group-hover:text-sky-300 transition">astriv.co</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              The flagship organizational portal and cloud dashboard. Centralizes identity federation, multi-tenant administrative controls, and system-wide asset deployment.
-            </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <!-- Node 1 -->
+        <a href="https://astriv.co" class="p-4 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-brand-cyan hover:bg-slate-900 transition block group space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-code text-xs text-brand-cyan font-bold">NODE 01</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500 group-hover:text-brand-cyan transition"></i>
           </div>
-          <a href="https://astriv.co" class="inline-flex items-center gap-2 text-xs font-semibold text-brand-cyan hover:text-white transition">
-            Explore Node <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+          <div class="text-base font-bold text-white group-hover:text-brand-cyan transition">astriv.co</div>
+          <div class="text-xs text-slate-400">Main Enterprise Hub & Administrative Gateway</div>
+        </a>
+
+        <!-- Node 2 -->
+        <a href="https://gradentia.astriv.co" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-brand-purple hover:bg-slate-900 transition block group space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-code text-xs text-brand-purple font-bold">NODE 02</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500 group-hover:text-brand-purple transition"></i>
+          </div>
+          <div class="text-base font-bold text-white group-hover:text-brand-purple transition">gradentia.astriv.co</div>
+          <div class="text-xs text-slate-400">Gradentia AI Cognitive Career Engine</div>
+        </a>
+
+        <!-- Node 3 -->
+        <a href="https://school.astriv.co" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl border border-slate-800 bg-slate-900/40 hover:border-emerald-500 hover:bg-slate-900 transition block group space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-code text-xs text-emerald-400 font-bold">NODE 03</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 transition"></i>
+          </div>
+          <div class="text-base font-bold text-white group-hover:text-emerald-400 transition">school.astriv.co</div>
+          <div class="text-xs text-slate-400">Offline-First School ERP & Ledger Suite</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Deep Architectural Breakdown for All Projects -->
+    <section id="projects" class="space-y-12">
+      <div class="border-b border-slate-800 pb-4">
+        <h2 class="text-2xl font-bold text-white tracking-tight">Full Project Specifications & Deep Dive</h2>
+        <p class="text-sm text-slate-400 mt-1">Detailed operational scope, backend architecture, and functional deliverables.</p>
+      </div>
+
+      <div class="space-y-10">
+
+        <!-- Project 1: astriv.co -->
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8 backdrop-blur-sm space-y-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded border border-sky-500/30 bg-sky-500/10 text-brand-cyan text-[11px] font-code">
+                CORE SYSTEM
+              </div>
+              <h3 class="text-xl font-bold text-white">1. ASTRIV Central Platform (astriv.co)</h3>
+            </div>
+            <a href="https://astriv.co" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs flex items-center gap-2 border border-slate-700 transition">
+              Open astriv.co <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+
+          <p class="text-sm text-slate-300 leading-relaxed">
+            The master administrative and corporate platform serving as the root umbrella for all ASTRIV initiatives. Engineered with a full-stack Node.js and SQL foundation wrapped in responsive Tailwind design, it manages enterprise operations, public digital identities, client intake, and global organization metrics.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-cyan font-semibold flex items-center gap-1.5">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Central Authentication
+              </div>
+              <div class="text-xs text-slate-400">Unified session handling, role-based access control (RBAC), and secure administrative consoles across organizational tiers.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-cyan font-semibold flex items-center gap-1.5">
+                <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i> Statutory Compliance
+              </div>
+              <div class="text-xs text-slate-400">Automated corporate accounting layouts, schedules 9230/3000 reporting, and audit verification ledgers for registered corporate oversight.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-cyan font-semibold flex items-center gap-1.5">
+                <i data-lucide="cpu" class="w-3.5 h-3.5"></i> Modular Service Dispatch
+              </div>
+              <div class="text-xs text-slate-400">Central routing hub directing institutional traffic, web applications, and developer API consumers to dedicated micro-services.</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 2: gradentia.astriv.co -->
-        <div class="group relative rounded-xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm hover:border-brand-glow/50 hover:bg-slate-900/70 transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <i data-lucide="sparkles" class="w-4 h-4"></i>
-              </span>
-              <span class="text-[10px] font-code uppercase px-2 py-0.5 rounded border border-indigo-500/30 bg-indigo-500/10 text-indigo-400">AI Career Engine</span>
+        <!-- Project 2: gradentia.astriv.co -->
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8 backdrop-blur-sm space-y-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded border border-indigo-500/30 bg-indigo-500/10 text-brand-purple text-[11px] font-code">
+                INTELLIGENT AGENTIC CORE
+              </div>
+              <h3 class="text-xl font-bold text-white">2. Gradentia AI (gradentia.astriv.co)</h3>
             </div>
-            <h3 class="text-lg font-bold text-white group-hover:text-indigo-300 transition">gradentia.astriv.co</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Intelligent career counseling and cognitive roadmap platform powered by LLMs. Provides dynamic career mapping, psychometric alignment, and skill gap forecasting.
-            </p>
+            <a href="https://gradentia.astriv.co" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 font-medium text-xs flex items-center gap-2 border border-indigo-500/40 transition">
+              Open gradentia.astriv.co <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
           </div>
-          <a href="https://gradentia.astriv.co" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-indigo-400 hover:text-white transition">
-            Access Gradentia AI <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+
+          <p class="text-sm text-slate-300 leading-relaxed">
+            Gradentia AI is a career counseling and academic intelligence platform designed to replace obsolete standardized aptitude screening with context-aware LLM reasoning. It systematically maps individual cognitive strengths, technical competencies, and market demands to generate dynamic career trajectory models.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-purple font-semibold flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> LLM Skill Mapping
+              </div>
+              <div class="text-xs text-slate-400">Dynamic skill gap forecasting that analyzes user performance against emerging market requirements and university admission criteria.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-purple font-semibold flex items-center gap-1.5">
+                <i data-lucide="network" class="w-3.5 h-3.5"></i> Autonomous Roadmaps
+              </div>
+              <div class="text-xs text-slate-400">Step-by-step modular learning sequences, recommended certifications, and milestone tracking customized per learner profile.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-purple font-semibold flex items-center gap-1.5">
+                <i data-lucide="compass" class="w-3.5 h-3.5"></i> Inquiry-Based Guidance
+              </div>
+              <div class="text-xs text-slate-400">Replaces rote memorization paths with inquiry-driven conceptual discovery and analytical reasoning metrics.</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Card 3: school.astriv.co -->
-        <div class="group relative rounded-xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-sm hover:border-brand-cyan/50 hover:bg-slate-900/70 transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                <i data-lucide="school" class="w-4 h-4"></i>
-              </span>
-              <span class="text-[10px] font-code uppercase px-2 py-0.5 rounded border border-sky-500/30 bg-sky-500/10 text-sky-400">Campus ERP</span>
+        <!-- Project 3: school.astriv.co -->
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8 backdrop-blur-sm space-y-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-[11px] font-code">
+                OFFLINE-FIRST CAMPUS ERP
+              </div>
+              <h3 class="text-xl font-bold text-white">3. ASTRIV School Management System (school.astriv.co)</h3>
             </div>
-            <h3 class="text-lg font-bold text-white group-hover:text-emerald-300 transition">school.astriv.co</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">
-              Offline-first school operations suite. Handles transactional fee ledgers, automated date sheets, student evaluation records, and local campus database synchronization.
-            </p>
+            <a href="https://school.astriv.co" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-200 font-medium text-xs flex items-center gap-2 border border-emerald-500/40 transition">
+              Open school.astriv.co <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
           </div>
-          <a href="https://school.astriv.co" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 hover:text-white transition">
-            Launch School Suite <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
+
+          <p class="text-sm text-slate-300 leading-relaxed">
+            A comprehensive, offline-first institutional management suite engineered to maintain full operational continuity regardless of connectivity outages. Centralizes student profiles, double-entry fee ledgers, automated date sheets, staff attendance rosters, and structured assessment rubrics.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="database" class="w-3.5 h-3.5"></i> Offline-First Sync
+              </div>
+              <div class="text-xs text-slate-400">Local-first client caching with seamless bidirectional database sync to remote MySQL instances upon reconnection.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="receipt" class="w-3.5 h-3.5"></i> Automated Fee Ledgers
+              </div>
+              <div class="text-xs text-slate-400">Strict double-entry fee management, receipt generation, invoice reconciliation, and defaulter tracking pipelines.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-emerald-400 font-semibold flex items-center gap-1.5">
+                <i data-lucide="printer" class="w-3.5 h-3.5"></i> A4 Layout Engine
+              </div>
+              <div class="text-xs text-slate-400">Dynamic generation of print-perfect A4 exam date sheets, staff attendance registers, bilingual worksheets, and circulars.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4: Digital Marketing & Creative Technology Division -->
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8 backdrop-blur-sm space-y-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="space-y-1">
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded border border-amber-500/30 bg-amber-500/10 text-brand-gold text-[11px] font-code">
+                CREATIVE ENGINE & MEDIA
+              </div>
+              <h3 class="text-xl font-bold text-white">4. ASTRIV Digital Media & Automation Division</h3>
+            </div>
+            <span class="text-xs font-code text-slate-500">KNOWLEDGE NEXUS & MEDIA OPS</span>
+          </div>
+
+          <p class="text-sm text-slate-300 leading-relaxed">
+            The growth and visual communication engine of the ecosystem. Blends programmatic video script generation, high-conversion short-form content pipelines (Instagram Reels, YouTube, LinkedIn), and modern UI design paradigms (dark navy glassmorphism with high-contrast electric accents).
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-gold font-semibold flex items-center gap-1.5">
+                <i data-lucide="video" class="w-3.5 h-3.5"></i> Algorithmic Video Pipelines
+              </div>
+              <div class="text-xs text-slate-400">Structured narrative storyboarding and vertical 9:16 script generation optimized for viral technical education and institutional marketing.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-gold font-semibold flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> Knowledge Nexus Academy
+              </div>
+              <div class="text-xs text-slate-400">Specialized technical education programs breaking down complex programming and machine learning into intuitive visual components.</div>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-800/80 bg-slate-950/60 space-y-2">
+              <div class="font-code text-xs text-brand-gold font-semibold flex items-center gap-1.5">
+                <i data-lucide="palette" class="w-3.5 h-3.5"></i> Visual Asset Standardization
+              </div>
+              <div class="text-xs text-slate-400">Strict design tokens enforcing crisp glassmorphic elements, modern typography (Orbitron/Inter), and high-contrast accessibility.</div>
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- Technical Stack & API Runtime Specs -->
-    <section class="rounded-2xl border border-slate-800 bg-slate-950/90 p-8 space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <i data-lucide="terminal" class="w-4 h-4 text-brand-cyan"></i>
-          Platform Architecture & Quickstart
-        </h3>
-        <span class="text-xs font-code text-slate-500">Node.js · React · MySQL · Tailored LLM Tools</span>
+    <!-- Technical Architecture & Developer Quickstart -->
+    <section id="quickstart" class="rounded-2xl border border-slate-800 bg-slate-950/90 p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800/80 pb-4">
+        <div>
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i data-lucide="terminal" class="w-5 h-5 text-brand-cyan"></i>
+            Open Core Architecture & CLI Execution
+          </h3>
+          <p class="text-xs text-slate-400 mt-1">Spin up the local containerized orchestration engine or deploy services.</p>
+        </div>
+        <span class="text-xs font-code text-brand-cyan">NODE.JS 20+ · MYSQL · REACT · TAILWIND</span>
       </div>
 
-      <div class="rounded-xl border border-slate-800/80 bg-brand-void p-4 font-code text-xs text-slate-300 space-y-2 overflow-x-auto">
-        <div class="text-slate-600"># 1. Clone open-source core orchestration repository</div>
+      <div class="rounded-xl border border-slate-800/80 bg-brand-void p-5 font-code text-xs text-slate-300 space-y-2.5 overflow-x-auto">
+        <div class="text-slate-600"># 1. Clone the primary ASTRIV developer repository</div>
         <div><span class="text-brand-cyan">$</span> git clone https://github.com/solohackerzorg/astriv.git</div>
-        <div class="text-slate-600 pt-1"># 2. Configure environment with your preferred LLM provider keys</div>
-        <div><span class="text-brand-cyan">$</span> cd astriv && cp .env.example .env</div>
-        <div class="text-slate-600 pt-1"># 3. Spin up local development runtime & services</div>
-        <div><span class="text-brand-cyan">$</span> npm install && npm run dev</div>
+        <div class="text-slate-600 pt-1"># 2. Navigate and install platform dependencies</div>
+        <div><span class="text-brand-cyan">$</span> cd astriv && npm install</div>
+        <div class="text-slate-600 pt-1"># 3. Configure environment variables (Database, Authentication & LLM API endpoints)</div>
+        <div><span class="text-brand-cyan">$</span> cp .env.example .env</div>
+        <div class="text-slate-600 pt-1"># 4. Run database migrations & launch development environment</div>
+        <div><span class="text-brand-cyan">$</span> npm run db:migrate && npm run dev</div>
+        <div class="text-emerald-400 pt-2 font-medium">✓ Engine running locally at http://localhost:3000</div>
       </div>
     </section>
 
   </main>
 
-  <!-- Clean Minimalist Footer -->
-  <footer class="border-t border-slate-800/80 py-8 text-xs text-slate-500 bg-brand-void/50">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div>© 2026 ASTRIV (astriv.co). Distributed under the MIT Open Source License.</div>
-      <div class="flex items-center gap-6">
-        <a href="https://astriv.co" class="hover:text-slate-300 transition">astriv.co</a>
-        <a href="https://gradentia.astriv.co" class="hover:text-slate-300 transition">gradentia</a>
-        <a href="https://school.astriv.co" class="hover:text-slate-300 transition">school</a>
-        <a href="mailto:contact@astriv.co" class="hover:text-slate-300 transition">contact@astriv.co</a>
+  <!-- Global Footer -->
+  <footer class="border-t border-slate-800/80 py-10 text-xs text-slate-500 bg-brand-void/70">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+      <div class="space-y-1 text-center sm:text-left">
+        <div class="text-white font-bold font-mono tracking-wider">ASTRIV ECOSYSTEM</div>
+        <div>© 2026 ASTRIV (astriv.co). Released under the MIT Open-Source License.</div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 font-code text-[11px]">
+        <a href="https://astriv.co" class="hover:text-brand-cyan transition">astriv.co</a>
+        <a href="https://gradentia.astriv.co" target="_blank" rel="noopener noreferrer" class="hover:text-brand-purple transition">gradentia</a>
+        <a href="https://school.astriv.co" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">school</a>
+        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">github</a>
+        <a href="mailto:contact@astriv.co" class="hover:text-white transition">contact@astriv.co</a>
       </div>
     </div>
   </footer>
 
-  <!-- Runtime Logic for Countdown and Pause -->
+  <!-- Interactive HUD Timer & Navigation Control -->
   <script>
     lucide.createIcons();
 
-    let timeLeft = 8;
+    let timeLeft = 12;
     let isPaused = false;
-    const timerDisplay = document.getElementById('timer');
+    const timerElem = document.getElementById('timer');
     const pauseBtn = document.getElementById('pause-btn');
+    const pulseDot = document.getElementById('pulse-dot');
 
-    const countdownInterval = setInterval(() => {
+    const countdown = setInterval(() => {
       if (!isPaused) {
         timeLeft--;
-        if (timerDisplay) timerDisplay.textContent = timeLeft;
+        if (timerElem) timerElem.textContent = timeLeft;
         if (timeLeft <= 0) {
-          clearInterval(countdownInterval);
+          clearInterval(countdown);
           window.location.href = "https://astriv.co";
         }
       }
@@ -240,11 +408,21 @@
     function togglePause() {
       isPaused = !isPaused;
       if (isPaused) {
-        pauseBtn.textContent = "Resume Redirect";
-        pauseBtn.classList.add("text-emerald-400");
+        pauseBtn.textContent = "Resume Countdown";
+        pauseBtn.classList.replace("bg-slate-800", "bg-emerald-600");
+        pauseBtn.classList.replace("text-slate-300", "text-white");
+        if (pulseDot) {
+          pulseDot.classList.remove("animate-pulse", "bg-emerald-400");
+          pulseDot.classList.add("bg-amber-400");
+        }
       } else {
-        pauseBtn.textContent = "Pause Redirect";
-        pauseBtn.classList.remove("text-emerald-400");
+        pauseBtn.textContent = "Pause Countdown";
+        pauseBtn.classList.replace("bg-emerald-600", "bg-slate-800");
+        pauseBtn.classList.replace("text-white", "text-slate-300");
+        if (pulseDot) {
+          pulseDot.classList.remove("bg-amber-400");
+          pulseDot.classList.add("animate-pulse", "bg-emerald-400");
+        }
       }
     }
   </script>
