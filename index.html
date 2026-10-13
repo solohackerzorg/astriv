@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ASTRIV | Open-Source Autonomous Campus & Workflow Engine</title>
-  <meta name="description" content="Open-source enterprise infrastructure and AI workflow runtime for academic ecosystems and campus administrative operations." />
+  <title>ASTRIV | Open-Source Engine</title>
+
+  <!-- Auto redirect to astriv.co after 3 seconds -->
+  <meta http-equiv="refresh" content="3; url=https://astriv.co" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -17,151 +19,65 @@
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
             mono: ['Orbitron', 'monospace'],
-          },
-          colors: {
-            brand: {
-              dark: '#030712',
-              card: '#0f172a',
-              blue: '#2563eb',
-              cyan: '#06b6d4',
-              accent: '#38bdf8'
-            }
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-brand-dark text-slate-200 antialiased selection:bg-cyan-500 selection:text-white">
+<body class="bg-slate-950 text-slate-200 min-h-screen flex items-center justify-center p-6 selection:bg-cyan-500 selection:text-white">
 
-  <!-- Ambient Glow Background -->
-  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-brand-blue/20 to-cyan-500/20 blur-[130px] rounded-full"></div>
+  <!-- Background Glow -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full"></div>
   </div>
 
-  <!-- Navbar -->
-  <header class="border-b border-slate-800/80 bg-brand-dark/70 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="font-mono text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">ASTRIV</span>
-        <span class="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 font-medium">v0.9-alpha</span>
-      </div>
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg border border-slate-700/60 hover:border-slate-600 bg-slate-900/60">
-          <i data-lucide="github" class="w-4 h-4"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="#deploy" class="text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-brand-blue to-cyan-500 hover:opacity-90 text-white transition shadow-lg shadow-cyan-500/10">Cloud Console</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="max-w-6xl mx-auto px-6 py-20">
+  <div class="max-w-md w-full bg-slate-900/80 border border-slate-800 rounded-2xl p-8 backdrop-blur-xl shadow-2xl relative text-center space-y-6">
     
-    <!-- Hero Section -->
-    <section class="text-center max-w-3xl mx-auto space-y-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-800 bg-slate-900/60 text-xs text-slate-400">
-        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-        Hosted Cloud Runtime & Open-Source Engine
+    <!-- Header -->
+    <div class="space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        GitHub Deployment Core
       </div>
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-        The Open-Source Core for <span class="bg-gradient-to-r from-sky-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">Institutional Intelligence</span>
-      </h1>
-      <p class="text-base sm:text-lg text-slate-400 leading-relaxed font-light">
-        ASTRIV unites institutional operations, automated record pipelines, and agentic administrative intelligence into an extensible, open runtime. Self-host with Docker or deploy directly via ASTRIV Cloud.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4 pt-4">
-        <a href="https://github.com/solohackerzorg/astriv" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-white text-slate-950 font-semibold text-sm px-6 py-3 rounded-lg hover:bg-slate-100 transition shadow-md">
-          <i data-lucide="git-fork" class="w-4 h-4"></i>
-          Deploy Repo
-        </a>
-        <a href="#architecture" class="flex items-center gap-2 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 bg-slate-900/40 text-sm px-6 py-3 rounded-lg transition">
-          <i data-lucide="terminal" class="w-4 h-4"></i>
-          API Docs
-        </a>
-      </div>
-    </section>
-
-    <!-- Architecture & Features Grid -->
-    <section id="architecture" class="mt-28 space-y-12">
-      <div class="border-b border-slate-800/80 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
-        <div>
-          <h2 class="text-2xl font-bold text-white tracking-tight">Platform Specifications</h2>
-          <p class="text-sm text-slate-400 mt-1">Engineered for low latency, audit compliance, and automated data pipelines.</p>
-        </div>
-        <div class="font-mono text-xs text-cyan-400">STATUS: PRODUCTION RUNTIME</div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Feature 1 -->
-        <div class="p-6 rounded-xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-sm space-y-4 hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-            <i data-lucide="cpu" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-lg font-semibold text-white">LLM Workflow Layer</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Autonomous ingestion pipelines that generate audit-ready academic transcripts, scheduled timetable matrices, and performance summaries directly via structured LLM tool-calling.
-          </p>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="p-6 rounded-xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-sm space-y-4 hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-            <i data-lucide="database" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-lg font-semibold text-white">Resilient Ledger Core</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Double-entry ledger pipelines built for transactional fee reconciliation, automated billing cycle validation, and tamper-resistant audit trails across decentralized nodes.
-          </p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="p-6 rounded-xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-sm space-y-4 hover:border-slate-700 transition">
-          <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
-          </div>
-          <h3 class="text-lg font-semibold text-white">Role & Audit Governance</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            Granular multi-tenant RBAC policies designed for institutional compliance, protecting student privacy registers and institutional assets with encrypted record isolation.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quickstart / CLI Section -->
-    <section id="deploy" class="mt-28">
-      <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-8 sm:p-10">
-        <div class="max-w-2xl">
-          <h2 class="text-2xl font-bold text-white tracking-tight">Deploy Open Core in Minutes</h2>
-          <p class="text-sm text-slate-400 mt-2">Spin up the local containerized stack or connect the orchestration client to the hosted cloud registry.</p>
-        </div>
-        
-        <div class="mt-6 rounded-lg border border-slate-800 bg-slate-900/90 p-4 font-mono text-xs text-slate-300 space-y-2 overflow-x-auto">
-          <div class="text-slate-500"># Clone the repository and configure runtime</div>
-          <div><span class="text-cyan-400">$</span> git clone https://github.com/solohackerzorg/astriv.git</div>
-          <div><span class="text-cyan-400">$</span> cd astriv && npm install</div>
-          <div class="text-slate-500 pt-2"># Initialize environment and start orchestration services</div>
-          <div><span class="text-cyan-400">$</span> cp .env.example .env</div>
-          <div><span class="text-cyan-400">$</span> npm run dev</div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/80 py-10 mt-20 text-xs text-slate-500">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div>© 2026 ASTRIV Ecosystem (astriv.co). Released under the MIT License.</div>
-      <div class="flex gap-6">
-        <a href="https://github.com/solohackerzorg/astriv" class="hover:text-slate-300 transition">Repository</a>
-        <a href="mailto:contact@astriv.co" class="hover:text-slate-300 transition">contact@astriv.co</a>
-      </div>
+      <h1 class="text-3xl font-bold font-mono tracking-wider text-white">ASTRIV</h1>
+      <p class="text-xs text-slate-400">Institutional workflow runtime & open-source core</p>
     </div>
-  </footer>
+
+    <!-- Redirect Status Box -->
+    <div class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-4 text-xs font-mono text-slate-300 space-y-2 text-left">
+      <div class="flex items-center justify-between text-slate-500">
+        <span>STATUS</span>
+        <span class="text-emerald-400 font-semibold">200 OK</span>
+      </div>
+      <div>Routing to production host:</div>
+      <div class="text-cyan-400 truncate">https://astriv.co</div>
+      <div class="pt-2 text-[11px] text-slate-500">Redirecting in <span id="countdown" class="text-white font-bold">3</span>s...</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex flex-col gap-2.5">
+      <a href="https://astriv.co" class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-semibold text-xs tracking-wide transition shadow-lg shadow-cyan-500/10">
+        Open astriv.co Now →
+      </a>
+      <a href="https://github.com/solohackerzorg/astriv" class="w-full py-2.5 px-4 rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-900 text-slate-300 hover:text-white font-medium text-xs transition">
+        View Source on GitHub
+      </a>
+    </div>
+
+  </div>
 
   <script>
-    lucide.createIcons();
+    let timeLeft = 3;
+    const timerElem = document.getElementById('countdown');
+    const interval = setInterval(() => {
+      timeLeft--;
+      if (timerElem) timerElem.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        window.location.href = "https://astriv.co";
+      }
+    }, 1000);
   </script>
 </body>
 </html>
